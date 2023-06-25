@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PlantsRepository } from './plants.repository';
 import { Plants } from './plants.entity';
+import { getPlantsAPI } from 'src/api/plants';
 
 @Injectable()
 export class PlantsService {
@@ -42,5 +43,19 @@ export class PlantsService {
     }
 
     return result;
+  }
+
+  async createPlants(): Promise<any> {
+    const data = getPlantsAPI();
+    const dataToEntity = {
+      name: data.name,
+    };
+
+    const plants = this.plantsRepository.create({
+      name: dataToEntity.name,
+    });
+    await this.plantsRepository.save(plants);
+
+    return plants;
   }
 }
