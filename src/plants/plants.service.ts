@@ -48,12 +48,13 @@ export class PlantsService {
   async createPlants(): Promise<any> {
     const data = getPlantsAPI();
     const dataToEntity = {
-      name: data.name,
+      name: 'dd',
     };
 
     const plants = this.plantsRepository.create({
       name: dataToEntity.name,
     });
+
     await this.plantsRepository.save(plants);
 
     return plants;

@@ -1,6 +1,7 @@
 import { Controller, Get, Query, Param, Post } from '@nestjs/common';
 import { PlantsService } from './plants.service';
 import { Plants } from './plants.entity';
+import { getApi } from 'src/api/plants';
 
 @Controller('plants')
 export class PlantsController {
@@ -11,13 +12,17 @@ export class PlantsController {
     return this.plantsService.getPlantsList(query);
   }
 
+  @Get('/api/temp')
+  getApi(): void {
+    // getApi();
+  }
+
   @Get('/:id')
   getPlantsById(@Param('id') id: number): Promise<Plants> {
     return this.plantsService.getPlantsById(id);
   }
 
-  @Post()
-  // @UseGuards(AuthGuard()) 각각 컨트롤러 메서드에 적용하면 크 메서드에만
+  @Post('/')
   createPlants(): Promise<any> {
     return this.plantsService.createPlants();
   }

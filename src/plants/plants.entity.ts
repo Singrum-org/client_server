@@ -14,9 +14,6 @@ export class Plants extends BaseEntity {
   @Column()
   name: string;
 
-  @Column()
-  en_name: string;
-
   // 품종 (과명)
   @Column()
   variety: string;
