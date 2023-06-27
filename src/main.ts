@@ -6,6 +6,6 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   setupSwagger(app);
 
-  await app.listen(8080);
+  await app.listen(process.env.PORT);
 }
 bootstrap();
