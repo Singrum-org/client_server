@@ -1,29 +1,29 @@
 import axios from 'axios';
 
-const API_URL = 'API_URL';
-const plantsToken = 'token';
+const API_KEY = '20230619XQQ5PIO9AGPK2CXMFJS6A';
 
-const getPlantsAPI = async () => {
-  try {
-    const { data } = await axios.get(`${API_URL}/api/plants`);
-    return data;
-  } catch (error) {
-    return error.response.data;
-  }
-};
-
-const getApi = async () => {
+const getPlantsListApi = async (page = 1) => {
   try {
     const { data } = await axios.get(
-      `http://api.nongsaro.go.kr/service/garden/gardenList?apiKey=20230619XQQ5PIO9AGPK2CXMFJS6A`,
+      `http://api.nongsaro.go.kr/service/garden/gardenList?apiKey=${API_KEY}&pageNo=${page}&numOfRows=50`,
     );
-    // var xmlToJson = convert.xml2json(data, { compact: true, spaces: 4 });
 
-    // console.log(xmlToJson);
-    // return result;
+    return data;
   } catch (error) {
     console.log(error);
   }
 };
 
-export { getPlantsAPI, getApi };
+const getPlantsDetailtApi = async (plantsNo: string) => {
+  try {
+    const { data } = await axios.get(
+      `http://api.nongsaro.go.kr/service/garden/gardenDtl?cntntsNo=${plantsNo}&apiKey=${API_KEY}`,
+    );
+
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { getPlantsListApi, getPlantsDetailtApi };

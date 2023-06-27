@@ -11,8 +11,17 @@ export class Plants extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column({ unique: true })
+  plantsNo: string;
+
   @Column()
   name: string;
+
+  @Column()
+  imageUrl: string;
+
+  @Column()
+  thumbImageUrl: string;
 
   // 품종 (과명)
   @Column()
@@ -21,10 +30,6 @@ export class Plants extends BaseEntity {
   // 원산지
   @Column()
   origin: string;
-
-  // 조언 정보
-  @Column()
-  advice: string;
 
   // 성장 높이
   @Column()
@@ -42,17 +47,9 @@ export class Plants extends BaseEntity {
   @Column()
   smell: string;
 
-  // 독성 정보
-  @Column()
-  toxicity: string;
-
   // 번식 시기
   @Column()
   breeding_season: string;
-
-  // 관리 수준
-  @Column()
-  management_level: string;
 
   // 생장 속도
   @Column()
@@ -62,33 +59,9 @@ export class Plants extends BaseEntity {
   @Column()
   growth_temperature: string;
 
-  // 겨울 최저 온도
-  @Column()
-  lowest_temperature: string;
-
   // 습도 코드
   @Column()
   humidity: string;
-
-  // 비료 정보
-  @Column()
-  fertilizer: string;
-
-  // 토양 정보
-  @Column()
-  soil: string;
-
-  // 물주기
-  @Column('simple-array', { nullable: true })
-  watering: string[];
-
-  // 병충해 관리
-  @Column()
-  pest_control: string;
-
-  // 특별 관리 정보
-  @Column()
-  special_manage_info: string;
 
   // 기능성 정보
   @Column()
@@ -99,5 +72,5 @@ export class Plants extends BaseEntity {
   view_count: number;
 
   @CreateDateColumn()
-  createAt: Date;
+  createdAt: Date;
 }
