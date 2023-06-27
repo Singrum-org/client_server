@@ -4,8 +4,10 @@ import { setupSwagger } from 'src/utils/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  const port = Number(process.env.PORT);
   setupSwagger(app);
 
-  await app.listen(process.env.PORT);
+  await app.listen(port);
 }
 bootstrap();
