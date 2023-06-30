@@ -3,7 +3,7 @@ import axios from 'axios';
 const getPlantsListApi = async (page = 1) => {
   try {
     const { data } = await axios.get(
-      `http://api.nongsaro.go.kr/service/garden/gardenList?apiKey=${process.env.API_KEY}&pageNo=${page}&numOfRows=50`,
+      `http://api.nongsaro.go.kr/service/garden/gardenList?apiKey=20230619XQQ5PIO9AGPK2CXMFJS6A&pageNo=${page}&numOfRows=50`,
     );
 
     return data;
@@ -15,7 +15,7 @@ const getPlantsListApi = async (page = 1) => {
 const getPlantsDetailtApi = async (plantsNo: string) => {
   try {
     const { data } = await axios.get(
-      `http://api.nongsaro.go.kr/service/garden/gardenDtl?cntntsNo=${plantsNo}&apiKey=${process.env.API_KEY}`,
+      `http://api.nongsaro.go.kr/service/garden/gardenDtl?cntntsNo=${plantsNo}&apiKey=20230619XQQ5PIO9AGPK2CXMFJS6A`,
     );
 
     return data;

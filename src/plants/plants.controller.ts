@@ -57,7 +57,7 @@ export class PlantsController {
     description: '검색에 맞는 식물 리스트를 가져온다',
   })
   @ApiQuery({
-    name: 'search',
+    name: 'name',
     required: true,
   })
   @ApiResponse({
