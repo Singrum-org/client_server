@@ -22,9 +22,9 @@ export class UserService {
   }
 
   async signIn(
-    userCredentialsDto: userLoginCredentialsDto,
+    userLoginCredentialsDto: userLoginCredentialsDto,
   ): Promise<{ accessToken: string }> {
-    const { email, password } = userCredentialsDto;
+    const { email, password } = userLoginCredentialsDto;
     const user = await this.userRepository.findOneBy({ email });
 
     if (user && (await bcrypt.compare(password, user.password))) {
@@ -34,7 +34,7 @@ export class UserService {
 
       return { accessToken };
     } else {
-      throw new UnauthorizedException('login failed');
+      throw new UnauthorizedException('로그인을 실패하셨습니다.');
     }
   }
 }

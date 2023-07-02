@@ -20,20 +20,44 @@ export class UserController {
   constructor(private userService: UserService) {}
 
   @Post('/signup')
-  signUp(
+  async signUp(
     @Body(ValidationPipe) usercredentialsDto: UserCredentialsDto,
-  ): Promise<User> {
-    return this.userService.signUp(usercredentialsDto);
+  ): Promise<any> {
+    try {
+      const result = await this.userService.signUp(usercredentialsDto);
+
+      return {
+        statusCode: 200,
+        message: '회원가입에 성공했습니다.',
+        data: result,
+      };
+    } catch (error) {
+      return {
+        ...error.response,
+      };
+    }
   }
 
   @Post('/signin')
-  signIn(
+  async signIn(
     @Body(ValidationPipe) userLoginCredentialsDto: userLoginCredentialsDto,
-  ): Promise<{ accessToken: string }> {
-    return this.userService.signIn(userLoginCredentialsDto);
+  ): Promise<any> {
+    try {
+      const result = await this.userService.signIn(userLoginCredentialsDto);
+
+      return {
+        statusCode: 200,
+        message: '로그인에 성공했습니다.',
+        data: result,
+      };
+    } catch (error) {
+      return {
+        ...error.response,
+      };
+    }
   }
 
-  @Post('/userTest')
+  @Post('/auth')
   @UseGuards(AuthGuard())
   test(@GetUser() user: User) {
     return user;

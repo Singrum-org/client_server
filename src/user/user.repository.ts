@@ -28,7 +28,7 @@ export class UserRepository extends Repository<User> {
       return result;
     } catch (error) {
       if (error.code === '23505') {
-        throw new ConflictException('Existing username');
+        throw new ConflictException('이미 존재하는 유저 이메일 입니다.');
       } else {
         throw new InternalServerErrorException();
       }
